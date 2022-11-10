@@ -34,7 +34,7 @@ class FeatureFetcher {
 
         return objectMapper.readValue(response.body(), FeaturesResponse::class.java).features
             .stream()
-            .sorted(Comparator.comparing(Feature::name))
+            .sorted(Comparator.comparing { it.name.toLowerCase() })
             .toList()
     }
 }

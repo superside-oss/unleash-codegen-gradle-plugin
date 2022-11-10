@@ -8,5 +8,4 @@ abstract class UnleashExtension : ExtensionAware {
     var fileName = "Features"
     var url = ""
     var token = "fakeToken"
-    var ktlintEnabled = false
 }

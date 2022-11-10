@@ -12,18 +12,14 @@ fun String.camelCaseToSnakeCase(): String = this
     .replace("-", "_")
     .toLowerCase()
 
-fun String.toArrayOfWords(): Array<String> = this
-    .split(" ").toTypedArray()
-
-fun Array<String>.addLineDelimiterAfterEachFifthWord(): String {
-    var result = ""
-    for (i in this.indices) {
-        result += this[i]
-        result += if (i % 7 == 0 && i != 0) {
-            "\n"
-        } else {
-            " "
-        }
+fun String.toMapOfWords(): Map<String, Int> = this
+    .split(" ")
+    .mapIndexed { index, s ->
+        s to s.length + (if (index > 0) this.split(" ")[index - 1].length else 0)
     }
-    return result
-}
+    .toMap()
+
+fun Map<String, Int>.toFormattedLine(maxLength: Int = 99): String = this
+    .mapKeys { if (it.value in maxLength - 30..maxLength) "${it.key}\n" else "${it.key}" }.keys
+    .toList()
+    .joinToString(separator = " ")
