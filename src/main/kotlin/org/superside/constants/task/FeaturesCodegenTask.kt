@@ -60,7 +60,7 @@ abstract class FeaturesCodegenTask @Inject constructor() : DefaultTask() {
                 .addProperty(
                     PropertySpec.builder(feature.name.toEnumStyle(), String::class, KModifier.CONST)
                         .initializer("%S", feature.name)
-                        .addKdoc(generateValidDescription(feature))
+                        .addKdoc(generateValidDescription(feature) + generateValidType(feature))
                         .build()
                 )
         }
@@ -72,8 +72,16 @@ abstract class FeaturesCodegenTask @Inject constructor() : DefaultTask() {
             .writeTo(Path.of("${generatedSrcDir.path}/"))
     }
 
+    private fun generateValidType(feature: Feature): Any? {
+        return if (feature.type.isNotEmpty()) {
+            "\n\n__Type__: ${feature.type}"
+        } else {
+            "\n\n__Type__: empty"
+        }
+    }
+
     private fun generateValidDescription(feature: Feature): String {
-        var description = "Description: "
+        var description = "__Description__: "
         if (feature.description?.trim()?.isNotBlank() == true) {
             description += feature.description.toMapOfWords().toFormattedLine()
         } else {
