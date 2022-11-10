@@ -7,5 +7,6 @@ abstract class UnleashExtension : ExtensionAware {
     var packageName = "org.superside.constants"
     var fileName = "Features"
     var url = ""
-    var token = "fakeToken"
+    var token = ""
+    var projects = emptyList<String>()
 }

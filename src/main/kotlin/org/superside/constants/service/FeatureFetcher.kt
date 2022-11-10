@@ -3,6 +3,7 @@ package org.superside.constants.service
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import org.superside.constants.extension.UnleashExtension
 import org.superside.constants.model.Feature
 import org.superside.constants.model.FeaturesResponse
 import java.net.URI
@@ -17,11 +18,23 @@ class FeatureFetcher {
         .registerModule(KotlinModule.Builder().build())
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
-    fun fetchFeatures(unleashUrl: String, token: String): Collection<Feature> {
-        val request = HttpRequest.newBuilder().uri(URI(unleashUrl)).GET()
+    fun fetchFeatures(unleashExtension: UnleashExtension): Collection<Feature> {
+        var uri = URI("${unleashExtension.url}client/features")
+        if (unleashExtension.token.isBlank()) {
+            throw IllegalArgumentException("Unleash token must be set")
+        }
+        unleashExtension.projects.forEach {
+            if (unleashExtension.projects[0] == it) {
+                uri = URI("${unleashExtension.url}client/features?project[]=$it")
+            } else {
+                uri = URI("$uri&project[]=$it")
+            }
+        }
+
+        val request = HttpRequest.newBuilder().uri(uri).GET()
             .header("Accept", "application/json")
             .header("Content-Type", "application/json")
-            .header("Authorization", token)
+            .header("Authorization", unleashExtension.token)
             .timeout(Duration.ofSeconds(5))
             .build()
 

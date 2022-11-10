@@ -55,7 +55,7 @@ abstract class FeaturesCodegenTask @Inject constructor() : DefaultTask() {
                     .build()
             )
 
-        for (feature in featureFetcher.fetchFeatures(unleashExtension.url, unleashExtension.token)) {
+        for (feature in featureFetcher.fetchFeatures(unleashExtension)) {
             featureBuilder
                 .addProperty(
                     PropertySpec.builder(feature.name.toEnumStyle(), String::class, KModifier.CONST)
