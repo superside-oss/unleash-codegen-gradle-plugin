@@ -5,6 +5,9 @@ import org.gradle.api.Project
 import org.superside.constants.extension.UnleashExtension
 import org.superside.constants.task.FeaturesCodegenTask
 
+/**
+ * Gradle plugin for generating feature constants from Unleash.
+ */
 @Suppress("unused")
 class UnleashPlugin : Plugin<Project> {
 

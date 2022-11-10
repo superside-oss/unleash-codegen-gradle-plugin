@@ -1,5 +1,10 @@
 package org.superside.constants.model
 
+data class FeaturesResponse(
+    val version: Long,
+    val features: List<Feature> = emptyList(),
+)
+
 data class Feature(
     val name: String,
     val description: String?,
