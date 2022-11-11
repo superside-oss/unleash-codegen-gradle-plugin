@@ -25,9 +25,7 @@ class FeatureFetcher {
      */
     fun fetchFeatures(extension: UnleashExtension): List<Feature> {
         var uri = URI("${extension.url}$CLIENT_API_PATH")
-        if (extension.token.isBlank()) {
-            throw IllegalArgumentException("Unleash token must be set")
-        }
+        assert(extension.token?.isNotBlank() == true) { "Unleash token must be set" }
         extension.projects.forEach {
             if (extension.projects[0] == it) {
                 uri = URI("${extension.url}$CLIENT_API_PATH?project[]=$it")

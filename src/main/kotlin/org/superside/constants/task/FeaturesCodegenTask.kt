@@ -18,12 +18,16 @@ abstract class FeaturesCodegenTask @Inject constructor() : DefaultTask() {
     @TaskAction
     fun run() {
         val unleashExtension = project.extensions.getByType(UnleashExtension::class.java)
-        assert(unleashExtension.url.isNotBlank()) { "Unleash URL must be set" }
+        assert(unleashExtension.url?.isNotBlank() == true) { "Unleash URL must be set" }
 
         val generatedSrcDir = File(project.projectDir, "src/main/kotlin/")
         generatedSrcDir.mkdirs()
         try {
-            featureGenerator.generate(featureFetcher.fetchFeatures(unleashExtension), unleashExtension, generatedSrcDir)
+            featureGenerator.generate(
+                featureFetcher.fetchFeatures(unleashExtension),
+                unleashExtension,
+                generatedSrcDir
+            )
         } catch (e: Exception) {
             System.err.println("Unable to generate features from unleash:")
             e.printStackTrace()

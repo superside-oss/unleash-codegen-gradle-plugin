@@ -1,17 +1,15 @@
 package org.superside.constants.extension
 
-import org.gradle.api.plugins.ExtensionAware
-
 /**
  * Base extension for the Unleash codegen plugin.
  *
  * @see org.superside.constants.task.FeaturesCodegenTask
- */
-abstract class UnleashExtension : ExtensionAware {
+ **/
+abstract class UnleashExtension {
 
-    var packageName = ""
-    var fileName = "Features"
-    var url = ""
-    var token = ""
-    var projects = emptyList<String>()
+    var url: String? = null
+    var token: String? = null
+    var packageName: String = ""
+    var fileName: String = "Features"
+    var projects: List<String> = emptyList()
 }
