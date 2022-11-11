@@ -1,4 +1,4 @@
-package org.superside.constants.generator
+package org.superside.unleash.generator
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
@@ -6,11 +6,11 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import org.superside.constants.extension.UnleashExtension
-import org.superside.constants.model.Feature
-import org.superside.constants.util.toEnumStyle
-import org.superside.constants.util.toFormattedLine
-import org.superside.constants.util.toMapOfWords
+import org.superside.unleash.extension.UnleashExtension
+import org.superside.unleash.model.Feature
+import org.superside.unleash.util.toEnumStyle
+import org.superside.unleash.util.toFormattedLine
+import org.superside.unleash.util.toMapOfWords
 import java.io.File
 import java.nio.file.Path
 
@@ -21,15 +21,16 @@ class KotlinFeatureGenerator : FeatureGenerator() {
      *
      * @param features the list of features from Unleash.
      * @param unleashExtension the extension containing the configuration for the codegen.
-     * @param generatedSrcDir the directory where the generated file will be placed.
+     * @param projectDirectory the project directory where the file will be generated.
      */
     override fun generate(
         features: List<Feature>,
         unleashExtension: UnleashExtension,
-        generatedSrcDir: File
+        projectDirectory: File
     ) {
+        val sourceSetDirectory = File(projectDirectory, KOTLIN_SOURCE_SET)
         println(
-            "Generating features to $generatedSrcDir/" +
+            "Generating features to $sourceSetDirectory/" +
                 "${unleashExtension.packageName}/${unleashExtension.fileName}.kt"
         )
 
@@ -55,11 +56,12 @@ class KotlinFeatureGenerator : FeatureGenerator() {
                 )
         }
 
+        sourceSetDirectory.mkdirs()
         FileSpec.builder(unleashExtension.packageName, unleashExtension.fileName)
             .addType(featureBuilder.build())
             .indent("\t")
             .build()
-            .writeTo(Path.of("${generatedSrcDir.path}/"))
+            .writeTo(Path.of("${sourceSetDirectory.path}/"))
     }
 
     private fun generateValidType(feature: Feature): Any? {
@@ -79,5 +81,9 @@ class KotlinFeatureGenerator : FeatureGenerator() {
         }
 
         return description
+    }
+
+    companion object {
+        private const val KOTLIN_SOURCE_SET = "src/main/kotlin/"
     }
 }

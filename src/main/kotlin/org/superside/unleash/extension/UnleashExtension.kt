@@ -1,9 +1,9 @@
-package org.superside.constants.extension
+package org.superside.unleash.extension
 
 /**
  * Base extension for the Unleash codegen plugin.
  *
- * @see org.superside.constants.task.FeaturesCodegenTask
+ * @see org.superside.unleash.task.FeaturesCodegenTask
  **/
 abstract class UnleashExtension {
 

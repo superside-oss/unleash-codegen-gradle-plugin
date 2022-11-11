@@ -1,4 +1,4 @@
-package org.superside.constants.model
+package org.superside.unleash.model
 
 data class FeaturesResponse(
     val version: Long,

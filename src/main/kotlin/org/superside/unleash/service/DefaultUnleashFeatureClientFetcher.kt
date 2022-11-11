@@ -1,34 +1,36 @@
-package org.superside.constants.service
+package org.superside.unleash.service
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import org.superside.constants.extension.UnleashExtension
-import org.superside.constants.model.Feature
-import org.superside.constants.model.FeaturesResponse
+import org.superside.unleash.model.Feature
+import org.superside.unleash.model.FeaturesResponse
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Duration
 
-class FeatureFetcher {
+class DefaultUnleashFeatureClientFetcher : UnleashFeatureFetcher {
 
     private val objectMapper = ObjectMapper()
         .registerModule(KotlinModule.Builder().build())
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
+    private val httpClient = HttpClient.newBuilder()
+        .version(HttpClient.Version.HTTP_1_1)
+        .followRedirects(HttpClient.Redirect.ALWAYS)
+        .connectTimeout(DEFAULT_TIMEOUT)
+        .build()
+
     /**
      * Fetches the features from Unleash, using the java.net for networking.
-     *
-     * @param extension The extension containing the Unleash URL, Token and optionally projects.
      */
-    fun fetchFeatures(extension: UnleashExtension): List<Feature> {
-        var uri = URI("${extension.url}$CLIENT_API_PATH")
-        assert(extension.token?.isNotBlank() == true) { "Unleash token must be set" }
-        extension.projects.forEach {
-            if (extension.projects[0] == it) {
-                uri = URI("${extension.url}$CLIENT_API_PATH?project[]=$it")
+    override fun fetchFeatures(url: String, token: String, projects: List<String?>): List<Feature> {
+        var uri = URI("${url}$CLIENT_API_PATH")
+        projects.forEach {
+            if (projects[0] == it) {
+                uri = URI("$url$CLIENT_API_PATH?project[]=$it")
             } else {
                 uri = URI("$uri&project[]=$it")
             }
@@ -37,15 +39,11 @@ class FeatureFetcher {
         val request = HttpRequest.newBuilder().uri(uri).GET()
             .header("Accept", "application/json")
             .header("Content-Type", "application/json")
-            .header("Authorization", extension.token)
+            .header("Authorization", token)
             .timeout(DEFAULT_TIMEOUT)
             .build()
 
-        val response = HttpClient.newBuilder()
-            .version(HttpClient.Version.HTTP_1_1)
-            .followRedirects(HttpClient.Redirect.ALWAYS)
-            .connectTimeout(DEFAULT_TIMEOUT)
-            .build()
+        val response = httpClient
             .send(request, HttpResponse.BodyHandlers.ofString())
 
         return objectMapper.readValue(response.body(), FeaturesResponse::class.java).features

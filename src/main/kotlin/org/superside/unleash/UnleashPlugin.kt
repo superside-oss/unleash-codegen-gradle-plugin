@@ -1,9 +1,9 @@
-package org.superside.constants
+package org.superside.unleash
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.superside.constants.extension.UnleashExtension
-import org.superside.constants.task.FeaturesCodegenTask
+import org.superside.unleash.extension.UnleashExtension
+import org.superside.unleash.task.FeaturesCodegenTask
 
 /**
  * Gradle plugin for generating feature constants from Unleash.
@@ -12,11 +12,7 @@ import org.superside.constants.task.FeaturesCodegenTask
 class UnleashPlugin : Plugin<Project> {
 
     override fun apply(project: Project): Unit = with(project) {
-        project.extensions.create(
-            "unleash",
-            UnleashExtension::class.java
-        )
-
+        extensions.create("unleash", UnleashExtension::class.java)
         tasks.register("generateFeatures", FeaturesCodegenTask::class.java)
     }
 }

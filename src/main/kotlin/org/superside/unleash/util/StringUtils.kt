@@ -1,4 +1,4 @@
-package org.superside.constants.util
+package org.superside.unleash.util
 
 fun String.toEnumStyle(): String = this
     .camelCaseToSnakeCase()
