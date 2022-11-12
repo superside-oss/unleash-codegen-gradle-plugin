@@ -22,7 +22,7 @@ dependencies {
     implementation("org.jboss.forge.roaster:roaster-jdt:2.26.0.Final")
     implementation("com.squareup:kotlinpoet:1.12.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     testImplementation("org.assertj:assertj-core:3.23.1")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("org.mockito:mockito-inline:4.8.0")
