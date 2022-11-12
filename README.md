@@ -53,7 +53,7 @@ unleash {
 }
 ```
 ### Generated Features example
-![Codegen Example](images/codegen-example.png)
+![Codegen Example](images/codegen1-example.png)
 
 
 ## Building from source
