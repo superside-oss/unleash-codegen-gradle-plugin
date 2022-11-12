@@ -1,9 +1,12 @@
 plugins {
+    kotlin("jvm") version "1.6.21"
+
     `kotlin-dsl`
     `java-gradle-plugin`
     `maven-publish-conventions`
 
     id("com.gradle.plugin-publish") version "1.0.0"
+    id("org.jmailen.kotlinter") version "3.10.0"
 }
 
 java {
@@ -25,16 +28,29 @@ dependencies {
     testImplementation("org.mockito:mockito-inline:4.8.0")
 }
 
+tasks.check {
+    dependsOn("installKotlinterPrePushHook")
+}
+
+group = "org.superside"
+
 gradlePlugin {
     plugins {
         create("unleashCodegen") {
             id = "org.superside.unleash"
             implementationClass = "org.superside.unleash.UnleashPlugin"
             displayName = "Unleash codegen gradle plugin"
+            description = "Gradle plugin for Unleash Feature Toggles code generation"
             version = project.version as String
         }
     }
 }
 
-group = "org.superside"
-version = "1.0.0"
+pluginBundle {
+    website = "https://github.com/yahorbarkouski/unleash-gradle-plugin"
+    vcsUrl = "https://github.com/yahorbarkouski/unleash-gradle-plugin.git"
+    tags = listOf("unleash")
+    pluginTags = mapOf(
+        "unleashCodegen" to listOf("unleash")
+    )
+}

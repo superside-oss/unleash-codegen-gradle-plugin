@@ -31,11 +31,8 @@ abstract class FeaturesCodegenTask @Inject constructor() : DefaultTask() {
                 project.projectDir
             )
         } catch (e: Exception) {
-            System.err.println("Unable to generate features from unleash:")
+            System.err.println("Unable to generate features from Unleash:")
             e.printStackTrace()
         }
-    }
-
-    companion object {
     }
 }
