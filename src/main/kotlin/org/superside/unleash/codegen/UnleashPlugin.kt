@@ -1,9 +1,9 @@
-package org.superside.unleash
+package org.superside.unleash.codegen
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.superside.unleash.extension.UnleashExtension
-import org.superside.unleash.task.FeaturesCodegenTask
+import org.superside.unleash.codegen.extension.UnleashExtension
+import org.superside.unleash.codegen.task.FeaturesCodegenTask
 
 /**
  * Gradle plugin for generating feature constants from Unleash.

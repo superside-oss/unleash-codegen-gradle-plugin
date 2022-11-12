@@ -1,7 +1,7 @@
-package org.superside.unleash.generator
+package org.superside.unleash.codegen.generator
 
-import org.superside.unleash.extension.UnleashExtension
-import org.superside.unleash.model.Feature
+import org.superside.unleash.codegen.extension.UnleashExtension
+import org.superside.unleash.codegen.model.Feature
 import java.io.File
 
 abstract class FeatureGenerator {

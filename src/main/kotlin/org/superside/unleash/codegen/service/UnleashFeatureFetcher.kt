@@ -1,6 +1,6 @@
-package org.superside.unleash.service
+package org.superside.unleash.codegen.service
 
-import org.superside.unleash.model.Feature
+import org.superside.unleash.codegen.model.Feature
 
 interface UnleashFeatureFetcher {
 

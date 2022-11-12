@@ -37,8 +37,8 @@ group = "org.superside"
 gradlePlugin {
     plugins {
         create("unleashCodegen") {
-            id = "org.superside.unleash"
-            implementationClass = "org.superside.unleash.UnleashPlugin"
+            id = "org.superside.unleash.codegen"
+            implementationClass = "org.superside.unleash.codegen.UnleashPlugin"
             displayName = "Unleash codegen gradle plugin"
             description = "Gradle plugin for Unleash Feature Toggles code generation"
             version = project.version as String
