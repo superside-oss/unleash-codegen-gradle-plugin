@@ -1,10 +1,10 @@
-package com.github.ybarkouski.unleash.codegen.service
+package io.github.ybarkouski.unleash.codegen.service
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.github.ybarkouski.unleash.codegen.model.Feature
-import com.github.ybarkouski.unleash.codegen.model.FeaturesResponse
+import io.github.ybarkouski.unleash.codegen.model.Feature
+import io.github.ybarkouski.unleash.codegen.model.FeaturesResponse
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest

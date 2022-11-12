@@ -1,10 +1,10 @@
-package com.github.ybarkouski.unleash.codegen.generator
+package io.github.ybarkouski.unleash.codegen.generator
 
-import com.github.ybarkouski.unleash.codegen.extension.UnleashExtension
-import com.github.ybarkouski.unleash.codegen.model.Feature
-import com.github.ybarkouski.unleash.codegen.util.toEnumStyle
-import com.github.ybarkouski.unleash.codegen.util.toFormattedLine
-import com.github.ybarkouski.unleash.codegen.util.toMapOfWords
+import io.github.ybarkouski.unleash.codegen.extension.UnleashExtension
+import io.github.ybarkouski.unleash.codegen.model.Feature
+import io.github.ybarkouski.unleash.codegen.util.toEnumStyle
+import io.github.ybarkouski.unleash.codegen.util.toFormattedLine
+import io.github.ybarkouski.unleash.codegen.util.toMapOfWords
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec

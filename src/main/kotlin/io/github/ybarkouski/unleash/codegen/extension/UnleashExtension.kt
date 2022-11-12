@@ -1,9 +1,9 @@
-package com.github.ybarkouski.unleash.codegen.extension
+package io.github.ybarkouski.unleash.codegen.extension
 
 /**
  * Base extension for the Unleash codegen plugin.
  *
- * @see com.github.ybarkouski.unleash.codegen.task.FeaturesCodegenTask
+ * @see io.github.ybarkouski.unleash.codegen.task.FeaturesCodegenTask
  **/
 abstract class UnleashExtension {
 

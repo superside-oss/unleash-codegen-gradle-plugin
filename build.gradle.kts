@@ -32,13 +32,13 @@ tasks.check {
     dependsOn("installKotlinterPrePushHook")
 }
 
-group = "com.github.ybarkouski"
+group = "io.github.ybarkouski"
 
 gradlePlugin {
     plugins {
         create("unleashCodegen") {
-            id = "com.github.ybarkouski.unleash.codegen"
-            implementationClass = "com.github.ybarkouski.unleash.codegen.UnleashPlugin"
+            id = "io.github.ybarkouski.unleash.codegen"
+            implementationClass = "io.github.ybarkouski.unleash.codegen.UnleashPlugin"
             displayName = "Unleash codegen gradle plugin"
             description = "Gradle plugin for Unleash Feature Toggles code generation"
             version = project.version as String

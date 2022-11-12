@@ -1,6 +1,6 @@
-package com.github.ybarkouski.unleash.codegen.service
+package io.github.ybarkouski.unleash.codegen.service
 
-import com.github.ybarkouski.unleash.codegen.model.Feature
+import io.github.ybarkouski.unleash.codegen.model.Feature
 
 interface UnleashFeatureFetcher {
 

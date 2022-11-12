@@ -1,7 +1,7 @@
-package com.github.ybarkouski.unleash.codegen
+package io.github.ybarkouski.unleash.codegen
 
-import com.github.ybarkouski.unleash.codegen.extension.UnleashExtension
-import com.github.ybarkouski.unleash.codegen.task.FeaturesCodegenTask
+import io.github.ybarkouski.unleash.codegen.extension.UnleashExtension
+import io.github.ybarkouski.unleash.codegen.task.FeaturesCodegenTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

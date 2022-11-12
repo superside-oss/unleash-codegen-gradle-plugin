@@ -21,7 +21,7 @@
 You need to add the following lines to your `build.gradle.kts` file:
 ```kotlin
 plugins { 
-  id("com.github.ybarkouski.unleash.codegen") version "<latest version from the Gradle plugin portal>"
+  id("io.github.ybarkouski.unleash.codegen") version "<latest version from the Gradle plugin portal>"
 }
 ```
 
@@ -48,7 +48,7 @@ unleash {
   url = "https://app.unleash-hosted.com/random/api/"
   token = System.getenv("UNLEASH_TOKEN")
   fileName = "ChatMicroserviceFeatures"
-  packageName = "com.github.ybarkouski.chat.unleash.constants"
+  packageName = "io.github.ybarkouski.chat.unleash.constants"
   projects = listOf("chat")
 }
 ```

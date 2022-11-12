@@ -1,4 +1,4 @@
-package com.github.ybarkouski.unleash.codegen.model
+package io.github.ybarkouski.unleash.codegen.model
 
 data class FeaturesResponse(
     val version: Long,

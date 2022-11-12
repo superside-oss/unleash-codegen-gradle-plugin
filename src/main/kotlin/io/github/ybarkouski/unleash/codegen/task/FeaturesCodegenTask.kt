@@ -1,8 +1,8 @@
-package com.github.ybarkouski.unleash.codegen.task
+package io.github.ybarkouski.unleash.codegen.task
 
-import com.github.ybarkouski.unleash.codegen.extension.UnleashExtension
-import com.github.ybarkouski.unleash.codegen.generator.KotlinFeatureGenerator
-import com.github.ybarkouski.unleash.codegen.service.DefaultUnleashFeatureClientFetcher
+import io.github.ybarkouski.unleash.codegen.extension.UnleashExtension
+import io.github.ybarkouski.unleash.codegen.generator.KotlinFeatureGenerator
+import io.github.ybarkouski.unleash.codegen.service.DefaultUnleashFeatureClientFetcher
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.TaskAction
