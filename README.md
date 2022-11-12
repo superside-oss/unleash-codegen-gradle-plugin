@@ -55,6 +55,7 @@ unleash {
 ### Generated Features example
 ![Codegen Example](images/codegen-example.png)
 
+
 ## Building from source
 You don’t need to build from source to use unleash-codegen, but if you want to try out the latest, unleash-codegen can be built and published to your local Maven cache using the Gradle wrapper.
 
