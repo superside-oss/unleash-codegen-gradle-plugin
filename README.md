@@ -10,7 +10,7 @@
 ## Notes
 1. This plugin is not a replacement for the Unleash SDK, it is a code generation tool that generates the Unleash SDK code for you.
 2. This plugin generates git-tracked sources, so the generation doesn't block developers that does not create new unleash features and doesn't want to export their Unleash Tokens.
-3. It's suggested to use unleash-codegen together with ktlint gradle plugins (like this or this), to keep the generated code clean and readable. Connection example:
+3. It's suggested to use unleash-codegen together with ktlint gradle plugins (like [kotlinter](https://github.com/jeremymailen/kotlinter-gradle) or [ktlint-gradle](https://github.com/JLLeitschuh/ktlint-gradle)), to keep the generated code clean and readable. Example configuration:
     ```kotlin
    tasks.named("generateFeatures") {
        finalizedBy("formatKotlin")
