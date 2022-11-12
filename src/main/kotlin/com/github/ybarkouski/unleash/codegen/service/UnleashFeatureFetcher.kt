@@ -1,6 +1,6 @@
-package org.superside.unleash.codegen.service
+package com.github.ybarkouski.unleash.codegen.service
 
-import org.superside.unleash.codegen.model.Feature
+import com.github.ybarkouski.unleash.codegen.model.Feature
 
 interface UnleashFeatureFetcher {
 

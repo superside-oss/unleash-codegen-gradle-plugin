@@ -1,9 +1,9 @@
-package org.superside.unleash.codegen.extension
+package com.github.ybarkouski.unleash.codegen.extension
 
 /**
  * Base extension for the Unleash codegen plugin.
  *
- * @see org.superside.unleash.codegen.task.FeaturesCodegenTask
+ * @see com.github.ybarkouski.unleash.codegen.task.FeaturesCodegenTask
  **/
 abstract class UnleashExtension {
 
