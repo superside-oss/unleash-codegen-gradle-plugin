@@ -1,16 +1,16 @@
 package io.github.ybarkouski.unleash.codegen.generator
 
-import io.github.ybarkouski.unleash.codegen.extension.UnleashExtension
-import io.github.ybarkouski.unleash.codegen.model.Feature
-import io.github.ybarkouski.unleash.codegen.util.toEnumStyle
-import io.github.ybarkouski.unleash.codegen.util.toFormattedLine
-import io.github.ybarkouski.unleash.codegen.util.toMapOfWords
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
+import io.github.ybarkouski.unleash.codegen.extension.UnleashExtension
+import io.github.ybarkouski.unleash.codegen.model.Feature
+import io.github.ybarkouski.unleash.codegen.util.toEnumStyle
+import io.github.ybarkouski.unleash.codegen.util.toFormattedLine
+import io.github.ybarkouski.unleash.codegen.util.toMapOfWords
 import java.io.File
 import java.nio.file.Path
 
