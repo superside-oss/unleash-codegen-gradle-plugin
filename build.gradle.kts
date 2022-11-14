@@ -32,25 +32,16 @@ tasks.check {
     dependsOn("installKotlinterPrePushHook")
 }
 
-group = "io.github.ybarkouski"
+group = "org.superside"
 
 gradlePlugin {
     plugins {
         create("unleashCodegen") {
-            id = "io.github.ybarkouski.unleash.codegen"
-            implementationClass = "io.github.ybarkouski.unleash.codegen.UnleashPlugin"
+            id = "org.superside.unleash.codegen"
+            implementationClass = "org.superside.unleash.codegen.UnleashPlugin"
             displayName = "Unleash codegen gradle plugin"
             description = "Gradle plugin for Unleash Feature Toggles code generation"
             version = project.version as String
         }
     }
-}
-
-pluginBundle {
-    website = "https://github.com/yahorbarkouski/unleash-gradle-plugin"
-    vcsUrl = "https://github.com/yahorbarkouski/unleash-gradle-plugin.git"
-    tags = listOf("unleash")
-    pluginTags = mapOf(
-        "unleashCodegen" to listOf("unleash")
-    )
 }

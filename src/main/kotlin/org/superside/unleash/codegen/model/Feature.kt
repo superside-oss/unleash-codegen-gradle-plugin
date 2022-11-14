@@ -1,4 +1,4 @@
-package io.github.ybarkouski.unleash.codegen.model
+package org.superside.unleash.codegen.model
 
 data class FeaturesResponse(
     val version: Long,

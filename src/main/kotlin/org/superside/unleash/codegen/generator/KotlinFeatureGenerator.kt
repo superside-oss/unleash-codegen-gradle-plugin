@@ -1,4 +1,4 @@
-package io.github.ybarkouski.unleash.codegen.generator
+package org.superside.unleash.codegen.generator
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
@@ -6,11 +6,11 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import io.github.ybarkouski.unleash.codegen.extension.UnleashExtension
-import io.github.ybarkouski.unleash.codegen.model.Feature
-import io.github.ybarkouski.unleash.codegen.util.toEnumStyle
-import io.github.ybarkouski.unleash.codegen.util.toFormattedLine
-import io.github.ybarkouski.unleash.codegen.util.toMapOfWords
+import org.superside.unleash.codegen.extension.UnleashExtension
+import org.superside.unleash.codegen.model.Feature
+import org.superside.unleash.codegen.util.toEnumStyle
+import org.superside.unleash.codegen.util.toFormattedLine
+import org.superside.unleash.codegen.util.toMapOfWords
 import java.io.File
 import java.nio.file.Path
 

@@ -1,4 +1,4 @@
-package io.github.ybarkouski.unleash.codegen.util
+package org.superside.unleash.codegen.util
 
 fun String.toEnumStyle(): String = this
     .camelCaseToSnakeCase()
