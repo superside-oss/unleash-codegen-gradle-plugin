@@ -1,0 +1,9 @@
+image: alpine
+
+stages:
+  - test
+  - deploy
+
+include:
+  - '.gitlab/gradle-test.yml'
+  - '.gitlab/gradle-publish.yml'
