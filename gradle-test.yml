@@ -1,0 +1,64 @@
+variables:
+  BUILD_DIRECTORY: "build"
+  BUILD_CACHE_KEY: "gradle-cache"
+
+gradle-tests:
+  stage: test
+
+  image: gradle:7.5.1-jdk17-alpine
+
+  before_script:
+    - export GRADLE_USER_HOME="$(pwd)/gradle-cache"
+
+  cache:
+    key:
+      files:
+        - gradle/wrapper/gradle-wrapper.properties
+      prefix: $BUILD_CACHE_KEY
+    paths:
+      - gradle-cache/caches/
+      - gradle-cache/notifications/
+      - .sonar/cache
+    policy: pull-push
+
+  variables:
+    GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+    AWS_S3: localstack:4566
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
+    GIT_DEPTH: "0"
+
+  services:
+    - name: docker:20.10.6-dind
+      alias: docker
+    - name: localstack/localstack
+      alias: localstack
+
+  script:
+    - gradle --build-cache check
+    - if [[ ${SONAR_PROJECT_KEY} ]]; then gradle sonarqube --stacktrace; fi
+
+  artifacts:
+    paths:
+      - $BUILD_DIRECTORY/reports/jacoco/test
+    expire_in: 1 hour
+    reports:
+      junit:
+        - '$BUILD_DIRECTORY/test-results/test/TEST-*.xml'
+
+  needs: [ ]
+
+  tags:
+    - builds
+    - staging
+
+  rules:
+    - if: $REDEPLOY_API == "true"
+      when: never
+    - if: '$CI_COMMIT_REF_SLUG =~ /^(hotfix|revert)[-\/].+/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+
