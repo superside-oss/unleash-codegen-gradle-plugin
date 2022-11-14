@@ -6,4 +6,4 @@ stages:
 
 include:
   - 'gradle-test.yml'
-  - '/gradle-publish.yml'
+  - 'gradle-publish.yml'
