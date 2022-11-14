@@ -5,5 +5,5 @@ stages:
   - deploy
 
 include:
-  - 'gradle-test.yml'
-  - 'gradle-publish.yml'
+  - '.gitlab/gradle-test.yml'
+  - '.gitlab/gradle-publish.yml'
