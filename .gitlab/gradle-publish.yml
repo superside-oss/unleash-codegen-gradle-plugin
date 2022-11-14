@@ -14,11 +14,8 @@ publish:
     policy: pull
   variables:
     <<: *project-variables
-  before_script:
-    - apk add curl
   script:
     - gradle --build-cache publish --info
-    - curl -X POST --fail -F token=$DEPENDABOT_TRIGGER_TOKEN -F "variables[PACKAGE_MANAGER_SET]=gradle" -F "variables[DIRECTORY]=/" -F ref=main https://gitlab.com/api/v4/projects/28071501/trigger/pipeline
   rules:
     -   if: '$CI_COMMIT_REF_SLUG == $CI_DEFAULT_BRANCH'
   tags:
