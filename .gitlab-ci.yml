@@ -5,8 +5,6 @@ stages:
   - deploy
 
 include:
-  - project: 'superside/cicd'
-    ref: main
     file:
-      - '/stages/gradle-test.yml'
-      - '/stages/gradle-publish.yml'
+      - '.gitlab/gradle-test.yml'
+      - '.gitlab/gradle-publish.yml'
