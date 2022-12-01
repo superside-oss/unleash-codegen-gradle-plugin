@@ -32,7 +32,7 @@ gradle-tests:
     GIT_DEPTH: "0"
 
   services:
-    - name: docker:20.10.6-dind
+    - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:20.10.6-dind
       alias: docker
     - name: localstack/localstack
       alias: localstack
