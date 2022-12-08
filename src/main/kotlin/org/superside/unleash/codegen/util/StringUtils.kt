@@ -23,6 +23,11 @@ fun String.toMapOfWords(): Map<String, Int> = this
     }
     .toMap()
 
+fun String.snakeToCamelCaseWithFirstLetterCapital(): String = this
+    .split("_")
+    .joinToString("") { it.capitalize() }
+    .apply { first().toUpperCase() }
+
 /**
  * Reformat a string, breaking a line right before the maxLength value, to avoid linter failures.
  */

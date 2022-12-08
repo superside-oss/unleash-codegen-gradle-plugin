@@ -26,30 +26,36 @@ class DefaultUnleashFeatureClientFetcher : UnleashFeatureFetcher {
     /**
      * Fetches the features from Unleash, using the java.net for networking.
      */
-    override fun fetchFeatures(url: String, token: String, projects: List<String?>): List<Feature> {
-        var uri = URI("${url}$CLIENT_API_PATH")
-        projects.forEach {
-            if (projects[0] == it) {
-                uri = URI("$url$CLIENT_API_PATH?project[]=$it")
+    override fun fetchFeatures(url: String, token: String, projects: List<String?>): MutableMap<String, List<Feature>> {
+        val featuresGroupedByProject: MutableMap<String, List<Feature>> = mutableMapOf()
+
+        projects.forEach { project ->
+            val uriWithProjectPath = URI("$url$CLIENT_API_PATH?project[]=$project")
+
+            println("Fetching features from $uriWithProjectPath")
+
+            val request = HttpRequest.newBuilder().uri(uriWithProjectPath).GET()
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .header("Authorization", token)
+                .timeout(DEFAULT_TIMEOUT)
+                .build()
+
+            val response = httpClient
+                .send(request, HttpResponse.BodyHandlers.ofString())
+
+            if (response.statusCode() == 200) {
+                objectMapper.readValue(response.body(), FeaturesResponse::class.java).features
+                    .stream()
+                    .sorted(Comparator.comparing { it.name.toLowerCase() })
+                    .toList()
+                    .let { featuresGroupedByProject[project!!] = it }
             } else {
-                uri = URI("$uri&project[]=$it")
+                throw IllegalStateException("Unable to fetch features from Unleash: ${response.body()}")
             }
         }
 
-        val request = HttpRequest.newBuilder().uri(uri).GET()
-            .header("Accept", "application/json")
-            .header("Content-Type", "application/json")
-            .header("Authorization", token)
-            .timeout(DEFAULT_TIMEOUT)
-            .build()
-
-        val response = httpClient
-            .send(request, HttpResponse.BodyHandlers.ofString())
-
-        return objectMapper.readValue(response.body(), FeaturesResponse::class.java).features
-            .stream()
-            .sorted(Comparator.comparing { it.name.toLowerCase() })
-            .toList()
+        return featuresGroupedByProject
     }
 
     companion object {

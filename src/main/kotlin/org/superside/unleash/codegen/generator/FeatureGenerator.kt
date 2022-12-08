@@ -1,6 +1,5 @@
 package org.superside.unleash.codegen.generator
 
-import org.superside.unleash.codegen.extension.UnleashExtension
 import org.superside.unleash.codegen.model.Feature
 import java.io.File
 
@@ -8,7 +7,8 @@ abstract class FeatureGenerator {
 
     abstract fun generate(
         features: List<Feature>,
-        unleashExtension: UnleashExtension,
+        packageName: String,
+        projectName: String,
         projectDirectory: File
     )
 

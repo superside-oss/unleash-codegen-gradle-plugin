@@ -6,7 +6,6 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import org.superside.unleash.codegen.extension.UnleashExtension
 import org.superside.unleash.codegen.model.Feature
 import org.superside.unleash.codegen.util.toEnumStyle
 import org.superside.unleash.codegen.util.toFormattedLine
@@ -25,16 +24,17 @@ class KotlinFeatureGenerator : FeatureGenerator() {
      */
     override fun generate(
         features: List<Feature>,
-        unleashExtension: UnleashExtension,
+        packageName: String,
+        projectName: String,
         projectDirectory: File
     ) {
         val sourceSetDirectory = File(projectDirectory, KOTLIN_SOURCE_SET)
         println(
             "Generating features to $sourceSetDirectory/" +
-                "${unleashExtension.packageName}/${unleashExtension.fileName}.kt"
+                "$packageName/${projectName}Features.kt"
         )
 
-        val featureBuilder = TypeSpec.objectBuilder(unleashExtension.fileName)
+        val featureBuilder = TypeSpec.objectBuilder("${projectName}Features")
             .addKdoc(FILE_HEADER_KDOC)
             .addAnnotation(
                 AnnotationSpec.Companion.builder(Suppress::class)
@@ -57,7 +57,7 @@ class KotlinFeatureGenerator : FeatureGenerator() {
         }
 
         sourceSetDirectory.mkdirs()
-        FileSpec.builder(unleashExtension.packageName, unleashExtension.fileName)
+        FileSpec.builder(packageName, "${projectName}Features")
             .addType(featureBuilder.build())
             .indent("\t")
             .build()

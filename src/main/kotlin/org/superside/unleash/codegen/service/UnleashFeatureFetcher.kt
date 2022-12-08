@@ -11,7 +11,7 @@ interface UnleashFeatureFetcher {
      * @param token the token to use for authentication.
      * @param projects the projects to fetch features for.
      *
-     * @return the list of Unleash features.
+     * @return the map of Unleash features grouped by Project.
      */
-    fun fetchFeatures(url: String, token: String, projects: List<String?>): List<Feature>
+    fun fetchFeatures(url: String, token: String, projects: List<String?>): MutableMap<String, List<Feature>>
 }
