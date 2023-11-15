@@ -5,11 +5,10 @@ import org.superside.unleash.codegen.model.Feature
 import java.io.File
 
 abstract class FeatureGenerator {
-
     abstract fun generate(
         features: List<Feature>,
         unleashExtension: UnleashExtension,
-        projectDirectory: File
+        projectDirectory: File,
     )
 
     companion object {

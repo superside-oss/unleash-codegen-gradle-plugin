@@ -3,7 +3,6 @@ package org.superside.unleash.codegen.service
 import org.superside.unleash.codegen.model.Feature
 
 interface UnleashFeatureFetcher {
-
     /**
      * Fetches the features from the Unleash API.
      *
@@ -13,5 +12,9 @@ interface UnleashFeatureFetcher {
      *
      * @return the list of Unleash features.
      */
-    fun fetchFeatures(url: String, token: String, projects: List<String?>): List<Feature>
+    fun fetchFeatures(
+        url: String,
+        token: String,
+        projects: List<String?>,
+    ): List<Feature>
 }

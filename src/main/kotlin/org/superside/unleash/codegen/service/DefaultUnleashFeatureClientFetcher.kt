@@ -12,48 +12,56 @@ import java.net.http.HttpResponse
 import java.time.Duration
 
 class DefaultUnleashFeatureClientFetcher : UnleashFeatureFetcher {
+    private val objectMapper =
+        ObjectMapper()
+            .registerModule(KotlinModule.Builder().build())
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
-    private val objectMapper = ObjectMapper()
-        .registerModule(KotlinModule.Builder().build())
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-
-    private val httpClient = HttpClient.newBuilder()
-        .version(HttpClient.Version.HTTP_1_1)
-        .followRedirects(HttpClient.Redirect.ALWAYS)
-        .connectTimeout(DEFAULT_TIMEOUT)
-        .build()
+    private val httpClient =
+        HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_1_1)
+            .followRedirects(HttpClient.Redirect.ALWAYS)
+            .connectTimeout(DEFAULT_TIMEOUT)
+            .build()
 
     /**
      * Fetches the features from Unleash, using the java.net for networking.
      */
-    override fun fetchFeatures(url: String, token: String, projects: List<String?>): List<Feature> {
+    override fun fetchFeatures(
+        url: String,
+        token: String,
+        projects: List<String?>,
+    ): List<Feature> {
         var uri = URI("${url}$CLIENT_API_PATH")
         projects.forEach {
-            if (projects[0] == it) {
-                uri = URI("$url$CLIENT_API_PATH?project[]=$it")
-            } else {
-                uri = URI("$uri&project[]=$it")
-            }
+            uri =
+                if (projects[0] == it) {
+                    URI("$url$CLIENT_API_PATH?project[]=$it")
+                } else {
+                    URI("$uri&project[]=$it")
+                }
         }
 
-        val request = HttpRequest.newBuilder().uri(uri).GET()
-            .header("Accept", "application/json")
-            .header("Content-Type", "application/json")
-            .header("Authorization", token)
-            .timeout(DEFAULT_TIMEOUT)
-            .build()
+        val request =
+            HttpRequest.newBuilder().uri(uri).GET()
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .header("Authorization", token)
+                .timeout(DEFAULT_TIMEOUT)
+                .build()
 
-        val response = httpClient
-            .send(request, HttpResponse.BodyHandlers.ofString())
+        val response =
+            httpClient
+                .send(request, HttpResponse.BodyHandlers.ofString())
 
         return objectMapper.readValue(response.body(), FeaturesResponse::class.java).features
             .stream()
-            .sorted(Comparator.comparing { it.name.toLowerCase() })
+            .sorted(Comparator.comparing { it.name.lowercase() })
             .toList()
     }
 
-    companion object {
-        private const val CLIENT_API_PATH = "client/features"
-        private val DEFAULT_TIMEOUT: Duration = Duration.ofSeconds(5)
+    private companion object {
+        const val CLIENT_API_PATH = "client/features"
+        val DEFAULT_TIMEOUT: Duration = Duration.ofSeconds(5)
     }
 }

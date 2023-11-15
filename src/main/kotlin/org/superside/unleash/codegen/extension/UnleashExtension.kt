@@ -6,7 +6,6 @@ package org.superside.unleash.codegen.extension
  * @see org.superside.unleash.codegen.task.FeaturesCodegenTask
  **/
 abstract class UnleashExtension {
-
     var url: String? = null
     var token: String? = null
     var packageName: String = ""

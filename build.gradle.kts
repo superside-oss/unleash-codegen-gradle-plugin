@@ -1,12 +1,11 @@
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.9.0"
 
     `kotlin-dsl`
     `java-gradle-plugin`
-    `maven-publish-conventions`
 
-    id("com.gradle.plugin-publish") version "1.0.0"
-    id("org.jmailen.kotlinter") version "3.10.0"
+    id("com.gradle.plugin-publish") version "1.2.1"
+    id("org.jmailen.kotlinter") version "4.1.0"
 }
 
 java {
@@ -35,6 +34,8 @@ tasks.check {
 group = "org.superside"
 
 gradlePlugin {
+    website.set("https://github.com/superside-oss/unleash-codegen-gradle-plugin")
+    vcsUrl.set("https://github.com/superside-oss/unleash-codegen-gradle-plugin")
     plugins {
         create("unleashCodegen") {
             id = "org.superside.unleash.codegen"
@@ -42,6 +43,7 @@ gradlePlugin {
             displayName = "Unleash codegen gradle plugin"
             description = "Gradle plugin for Unleash Feature Toggles code generation"
             version = project.version as String
+            tags = listOf("unleash", "codegen", "feature toggle")
         }
     }
 }
