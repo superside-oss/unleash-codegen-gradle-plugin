@@ -1,11 +1,11 @@
-package org.superside.unleash.codegen.task
+package com.superside.unleash.codegen.task
 
+import com.superside.unleash.codegen.extension.UnleashExtension
+import com.superside.unleash.codegen.generator.KotlinFeatureGenerator
+import com.superside.unleash.codegen.service.DefaultUnleashFeatureClientFetcher
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.TaskAction
-import org.superside.unleash.codegen.extension.UnleashExtension
-import org.superside.unleash.codegen.generator.KotlinFeatureGenerator
-import org.superside.unleash.codegen.service.DefaultUnleashFeatureClientFetcher
 import javax.inject.Inject
 
 @CacheableTask

@@ -1,4 +1,4 @@
-package org.superside.unleash.codegen.generator
+package com.superside.unleash.codegen.generator
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
@@ -6,11 +6,11 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import org.superside.unleash.codegen.extension.UnleashExtension
-import org.superside.unleash.codegen.model.Feature
-import org.superside.unleash.codegen.util.toEnumStyle
-import org.superside.unleash.codegen.util.toFormattedLine
-import org.superside.unleash.codegen.util.toMapOfWords
+import com.superside.unleash.codegen.extension.UnleashExtension
+import com.superside.unleash.codegen.model.Feature
+import com.superside.unleash.codegen.util.toEnumStyle
+import com.superside.unleash.codegen.util.toFormattedLine
+import com.superside.unleash.codegen.util.toMapOfWords
 import java.io.File
 import java.nio.file.Path
 

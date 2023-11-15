@@ -1,4 +1,4 @@
-package org.superside.unleash.codegen.util
+package com.superside.unleash.codegen.util
 
 fun String.toEnumStyle(): String =
     this

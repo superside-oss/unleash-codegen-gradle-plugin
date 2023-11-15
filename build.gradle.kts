@@ -31,15 +31,15 @@ tasks.check {
     dependsOn("installKotlinterPrePushHook")
 }
 
-group = "org.superside"
+group = "com.superside"
 
 gradlePlugin {
     website.set("https://github.com/superside-oss/unleash-codegen-gradle-plugin")
     vcsUrl.set("https://github.com/superside-oss/unleash-codegen-gradle-plugin")
     plugins {
         create("unleashCodegen") {
-            id = "org.superside.unleash.codegen"
-            implementationClass = "org.superside.unleash.codegen.UnleashPlugin"
+            id = "com.superside.unleash.codegen"
+            implementationClass = "com.superside.unleash.codegen.UnleashPlugin"
             displayName = "Unleash codegen gradle plugin"
             description = "Gradle plugin for Unleash Feature Toggles code generation"
             version = project.version as String

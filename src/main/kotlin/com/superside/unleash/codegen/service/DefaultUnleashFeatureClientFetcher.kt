@@ -1,10 +1,10 @@
-package org.superside.unleash.codegen.service
+package com.superside.unleash.codegen.service
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import org.superside.unleash.codegen.model.Feature
-import org.superside.unleash.codegen.model.FeaturesResponse
+import com.superside.unleash.codegen.model.Feature
+import com.superside.unleash.codegen.model.FeaturesResponse
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
