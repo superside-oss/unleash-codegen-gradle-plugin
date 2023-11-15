@@ -74,11 +74,12 @@ class KotlinFeatureGenerator : FeatureGenerator() {
 
     private fun generateValidDescription(feature: Feature): String {
         var description = "__Description__: "
-        description += if (feature.description?.trim()?.isNotBlank() == true) {
-            feature.description.toMapOfWords().toFormattedLine()
-        } else {
-            "empty"
-        }
+        description +=
+            if (feature.description?.trim()?.isNotBlank() == true) {
+                feature.description.toMapOfWords().toFormattedLine()
+            } else {
+                "empty"
+            }
 
         return description
     }
