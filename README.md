@@ -1,4 +1,4 @@
-# Unleash Codegen Gradle Plugin ![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/com.superside.unleash.codegen)
+# Unleash Codegen Gradle Plugin [![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/com.superside.unleash.codegen)](https://plugins.gradle.org/plugin/com.superside.unleash.codegen)
 > Gradle plugin for Unleash Feature Toggles code generation
 
 
