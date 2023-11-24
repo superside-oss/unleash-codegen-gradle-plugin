@@ -1,0 +1,15 @@
+# CODEOWNERS file
+# Default Owners
+CODEOWNERS @superside/infrastructure
+
+# Code Owners for CI/CD files
+.gitlab-ci/ @superside/infrastructure
+terraform/ @superside/infrastructure
+.gitlab-ci.yml @superside/infrastructure
+.gitlab-ci.yaml @superside/infrastructure
+
+# Packaging
+Dockerfile* @superside/infrastructure
+
+# Additional rules can be added below
+
